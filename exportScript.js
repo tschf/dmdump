@@ -31,6 +31,8 @@ for (var objIdx = 0; objIdx < userObjects.length; objIdx++){
     var extension = '.sql';
     var destFolder = objectType;
 
+
+
     if (objectType === 'package body') {
         extension = '.pkb';
         destFolder = 'package';
@@ -39,14 +41,12 @@ for (var objIdx = 0; objIdx < userObjects.length; objIdx++){
         destFolder = 'package';
     }
 
-
     if ( ! foldersCreated[destFolder]) {
-        makeDir(objectType);
-        foldersCreated[objectType] = true;
+        makeDir(destFolder);
+        foldersCreated[destFolder] = true;
     }
 
     runCmd('spool ' + destFolder + '/' + objectName + extension);
     runCmd('ddl ' + objectName + ' ' + objectType);
     runCmd('spool off');
-
 }
