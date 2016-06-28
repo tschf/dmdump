@@ -3,8 +3,7 @@
 # Arguments
 EXPECTED_ARGS=5
 
-DIR="$(dirname "$(readlink -f "$0")")"
-cd ${DIR}
+LIB_DIR="$(dirname "$(readlink -f "$0")")"
 
 USER=$1
 PASS=$2
@@ -31,7 +30,7 @@ echo SERVER:${SERVER}
 echo PORT:${PORT}
 echo SID:${SID}
 
-echo "exit" | sql ${USER}/${PASS}@//${SERVER}:${PORT}/${SID} @scriptWrap
+echo "exit" | sql ${USER}/${PASS}@//${SERVER}:${PORT}/${SID} @${LIB_DIR}/scriptWrap ${LIB_DIR}
 
 echo "Finished"
 exit 0
