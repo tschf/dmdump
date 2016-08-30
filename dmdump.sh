@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # Arguments
-EXPECTED_ARGS=5
+EXPECTED_ARGS=1
 
 LIB_DIR="$(dirname "$(readlink -f "$0")")"
 
-USER=$1
-PASS=$2
-SERVER=$3
-PORT=$4
-SID=$5
+CONN_STR=$1
 
 print_usage(){
-    echo "dmdump schema password server port sid"
+    echo "dmdump connect_string"
+    echo "connect_string format can be:"
+    echo "  hr/hr@//server:port/service_name"
+    echo "  hr/hr@//server:port:sid"
+    echo "  hr/hr@TNSNAME"
     exit 1
 }
 
@@ -22,15 +22,15 @@ if [[ $# -ne ${EXPECTED_ARGS} ]]; then
     print_usage
     exit ${INVALID_ARGS}
 fi
+# Warn if TNS_ADMIN is not set.
+if [[ -z ${TNS_ADMIN} ]]; then
+    echo "WARNING: For TNS connections, the TNS_ADMIN environment variable must be set to the directory containing TNSNAMES.ora" >&2
+fi
 
 echo "INPUT:"
-echo USER:${USER}
-echo PASS:${PASS}
-echo SERVER:${SERVER}
-echo PORT:${PORT}
-echo SID:${SID}
+echo CONN_STR:${CONN_STR}
 
-echo "exit" | sql ${USER}/${PASS}@//${SERVER}:${PORT}/${SID} @${LIB_DIR}/scriptWrap ${LIB_DIR}
+echo "exit" | sql -L ${CONN_STR} @${LIB_DIR}/scriptWrap ${LIB_DIR}
 
 echo "Finished"
 exit 0
