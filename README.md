@@ -1,8 +1,6 @@
 # Database Dump
 
-note: This is not built with Windows in mind
-
-This project is designed to dump the database objects into the file system. The scripting engine required to run these scripts is SQLcl.
+This project is designed to dump the database objects into the file system. The scripting engine required to run these scripts is SQLcl. SQLcl must be in your PATH
 
 I suggest cloning the project onto your system somewhere and then creating a symbolic link to the script `dmdump.sh`. This can be done with:
 
