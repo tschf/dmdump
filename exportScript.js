@@ -1,3 +1,10 @@
+var System = Java.type("java.lang.System");
+var os = System.getProperty("os.name");
+
+function isWindows(){
+    return /^win/i.test(os);
+}
+
 function writeLine(str){
     ctx.write(str);
     ctx.write('\n');
@@ -9,7 +16,11 @@ function runCmd(cmd){
 }
 
 function makeDir(path){
-    runCmd('host mkdir -p ' + path)
+    if (isWindows()) {
+      runCmd('host if not exist ' + path + ' mkdir ' + path)
+    } else {
+      runCmd('host mkdir -p ' + path)
+    }
 }
 
 runCmd('set echo off \
