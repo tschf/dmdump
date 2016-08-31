@@ -1,11 +1,11 @@
 # Database Dump
 
-This project is designed to use [SQLcl](http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html) to dump the database objects for the connected SCHEMA to the filesystem.
+This project is designed to use [SQLcl](http://www.oracle.com/technetwork/developer-tools/sqlcl/downloads/index.html) to dump the database objects for the connected SCHEMA to the filesystem.
 
-dmdump requires the [SQLcl](http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html) bin directory to be in your `PATH`.
+dmdump requires the [SQLcl](http://www.oracle.com/technetwork/developer-tools/sqlcl/downloads/index.html) bin directory to be in your `PATH`.
 
 ### Prerequisites
-- Download and unzip [SQLcl](http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html).
+- Download and unzip [SQLcl](http://www.oracle.com/technetwork/developer-tools/sqlcl/downloads/index.html).
 - Add the SQLcl bin directory to your `PATH`.
 
 ### Install
