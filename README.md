@@ -1,23 +1,41 @@
 # Database Dump
 
-note: This is not built with Windows in mind
+This project is designed to use [SQLcl](http://www.oracle.com/technetwork/developer-tools/sqlcl/downloads/index.html) to dump the database objects for the connected SCHEMA to the filesystem.
 
-This project is designed to dump the database objects into the file system. The scripting engine required to run these scripts is SQLcl.
+dmdump requires the [SQLcl](http://www.oracle.com/technetwork/developer-tools/sqlcl/downloads/index.html) bin directory to be in your `PATH`.
 
-I suggest cloning the project onto your system somewhere and then creating a symbolic link to the script `dmdump.sh`. This can be done with:
+### Prerequisites
+- Download and unzip [SQLcl](http://www.oracle.com/technetwork/developer-tools/sqlcl/downloads/index.html).
+- Add the SQLcl bin directory to your `PATH`.
 
-```sql
+### Install
+- Clone or download dmdump onto your system.
+
+#### Unix
+- Create a symbolic link to the script `dmdump.sh`:
+```bash
 sudo ln -s /opt/dmdump/dmdump.sh /usr/bin/dmdump
 ```
 
-Then, to run the dumps, go to the directory where you want the source files located, and then run:
-
-```bash
-dmdump user pass server port sid
+#### Windows
+- Add dmdump to your PATH:
+```bat
+SET PATH=%PATH%;C:\dmdump\
 ```
 
-Sample file system layout would then look:
+### Usage
+- Navigate to the desired output directory.
+- Run dmdump as follows:
+```bash
+dmdump {connect_string}
+```
 
+### Arguments
+|Name  | Description             | Example |
+|---            |---                      | ---     |
+| connect_string | The connect string to connect to a database using `sqlcl` on the command line. <br>**Note:** A password is *required* at this stage. | - hr/hr@//server:port/service_name  <br />- hr/hr@//server:port:sid  <br />- hr/hr@XE1 |
+
+### Sample Output
 ```
 .
 ├── function
